@@ -1,3 +1,10 @@
+def balanceYear(balanceNet, monthlyPayment, interest):
+    for month in range(12):
+        balanceNet = balanceNet - monthlyPayment
+        #print(monthlyPayment)
+        balanceNet = balanceNet + interest * balanceNet / 12.0 
+    return balanceNet
+
 def lowestPaymentIter(low, high, balance, interest):
     if balanceYear(balance, (high + low) / 2, interest) > .001:
         ## Mid Payment too Low, Value is between Mid and High
