@@ -1,4 +1,6 @@
+
 from ps4a import *
+
 
 #
 # Test code
@@ -198,3 +200,4 @@ print("Testing isValidWord...")
 test_isValidWord(wordList)
 print("----------------------------------------------------------------------")
 print("All done!")
+

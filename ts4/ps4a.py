@@ -72,10 +72,9 @@ def getWordScore(word, n):
     returns: int >= 0
     """
     score = 0
-    freq = getFrequencyDict(word)
     
-    for letter in freq:
-        score += SCRABBLE_LETTER_VALUES[letter] * freq[letter]
+    for letter in word:
+        score += SCRABBLE_LETTER_VALUES[letter]
     
     score *= len(word)
         
@@ -84,9 +83,7 @@ def getWordScore(word, n):
         
     return score
 
-#
-# Problem #2: Make sure you understand how this function works and what it does!
-#
+
 def displayHand(hand):
     """
     Displays the letters currently in the hand.
@@ -129,7 +126,8 @@ def dealHand(n):
     for i in range(numVowels, n):    
         x = CONSONANTS[random.randrange(0,len(CONSONANTS))]
         hand[x] = hand.get(x, 0) + 1
-        
+    print("UpdateHand is Running")    
+    print("UpdateHand is Running")    
     return hand
 
 #
@@ -151,9 +149,13 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
-
+    
+    update = hand.copy()
+    
+    for letter in word:
+        update[letter] -= 1
+        
+    return update
 
 #
 # Problem #3: Test word validity
@@ -169,7 +171,15 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    wordDict = getFrequencyDict(word)
+    
+    for letter in wordDict:
+        if letter not in hand:
+            return False
+        if wordDict[letter] > hand[letter]:
+            return False
+    
+    return word in wordList 
 
 
 #
@@ -180,10 +190,14 @@ def calculateHandlen(hand):
     """ 
     Returns the length (number of letters) in the current hand.
     
-    hand: dictionary (string-> int)
+    hand: dictionary (string int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+    numLetters = 0
+    for letter in hand:
+        numLetters += hand[letter]
+        
+    return numLetters
 
 
 
