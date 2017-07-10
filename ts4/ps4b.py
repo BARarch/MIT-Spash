@@ -114,7 +114,9 @@ def playGame(wordList):
     3) Switch functionality based on the above choices:
         * If the user inputted 'n', play a new (random) hand.
         * Else, if the user inputted 'r', play the last hand again.
-      
+          But if no hand was played, output "You have not played a hand yet. 
+          Please play a new hand first!"
+        
         * If the user inputted 'u', let the user play the game
           with the selected hand, using playHand.
         * If the user inputted 'c', let the computer play the 
@@ -124,8 +126,39 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
+    hand = {}
+
+    while True:
+        userCmd = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+
+        if userCmd == 'n':
+            hand = dealHand(HAND_SIZE)
+        elif userCmd == 'r':
+            if not hand:
+                print('You have not played a hand yet. Please play a new hand first!')
+                print()
+                continue
+        elif userCmd == 'e':
+            break
+        else:
+            print('Invalid command.')
+            continue
+        
+        while True:
+            playCmd = input('Enter u to have yourself play, c to have the computer play: ')
+            
+            if playCmd == 'u':
+                playHand(hand, wordList, HAND_SIZE)
+                break
+            elif playCmd == 'c':
+                compPlayHand(hand, wordList, HAND_SIZE)
+                break
+            else:
+                print('Invalid command.')
+                print()
+                continue
+        print() 
+   
 
         
 #
