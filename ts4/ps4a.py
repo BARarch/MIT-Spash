@@ -226,6 +226,7 @@ def playHand(hand, wordList, n):
     # Keep track of the total score
     
     # As long as there are still letters left in the hand:
+    
     while calculateHandlen(hand) > 0:
         # Display the hand
         print("Current Hand:", end = " ")
